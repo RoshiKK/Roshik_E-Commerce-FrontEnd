@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Navbar from "../../components/navbar";
-import Footer from "../../components/footer";
+import Footer from "../../components/Footer";
 import { useCart } from '../../components/cartContext';
 
 const products = [
@@ -22,8 +22,8 @@ const products = [
 export default function ProductPage() {
   const router = useRouter();
   const { id } = router.query;
+  const { addToCart } = useCart();
 
-  const { cartItems, addToCart } = useCart();
   const product = products.find((p) => p.id === id);
 
   if (!product) {
@@ -96,7 +96,7 @@ export default function ProductPage() {
         </div>
 
         <hr className="my-8 border-gray-300" />
-        
+
         <div className="mt-16">
           <div className="flex flex-col md:flex-row justify-between items-center mb-6">
             <h2 className="text-xl ml-[26rem] md:text-2xl font-semibold text-gray-800 mb-4 md:mb-0 ">Description</h2>
