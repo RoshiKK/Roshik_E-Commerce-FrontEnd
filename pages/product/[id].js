@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Navbar from "../../components/navbar";
-import Footer from "../../components/Footer";
+import Footer from "../../components/footer";
 import { useCart } from '../../components/cartContext';
 
 const products = [
