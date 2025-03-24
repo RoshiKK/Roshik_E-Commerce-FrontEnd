@@ -6,7 +6,6 @@ export default function ShopSection({ products = [] }) {
   return (
     <section className="bg-gray-50 min-h-screen flex items-center">
       <div className="container mx-auto px-4 flex flex-col items-center">
-        {/* Header Section */}
         <div className="text-center mb-8 bg-[#FFF3E3] h-80 w-full flex flex-col items-center justify-center">
           <h1 className="text-5xl font-bold">Shop</h1>
           <p className="text-gray-500 mt-2">
@@ -41,7 +40,6 @@ export default function ShopSection({ products = [] }) {
             </div>
           </div>
         </div>
-
         {/* Products Grid */}
         {products.length > 0 ? (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-6 w-full">

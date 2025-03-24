@@ -1,4 +1,4 @@
-// pages/product/[id].js
+
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../store/cartSlice";
 import Image from "next/image";
@@ -44,7 +44,6 @@ export default function ProductPage({ product }) {
             <p className="text-base md:text-lg text-gray-700 mb-6">
               {product.description}
             </p>
-            {/* Options for size and color (static or dynamic) */}
             <div className="flex flex-wrap items-center space-x-4 mb-8">
               <input
                 type="number"
@@ -65,7 +64,6 @@ export default function ProductPage({ product }) {
             </div>
           </div>
         </div>
-        {/* Related Products Section (if desired) */}
       </div>
       <Footer />
     </div>

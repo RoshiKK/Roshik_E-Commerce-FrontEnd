@@ -1,8 +1,8 @@
 import { defineType, defineField } from 'sanity'
 
 export default defineType({
-  name: 'product',  // Internal name for your document
-  title: 'Product', // How it appears in the Studio
+  name: 'product', 
+  title: 'Product', 
   type: 'document',
   fields: [
     defineField({

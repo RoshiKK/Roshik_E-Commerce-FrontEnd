@@ -1,4 +1,3 @@
-// store/store.js
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import cartReducer from './cartSlice';
 import { persistStore, persistReducer } from 'redux-persist';

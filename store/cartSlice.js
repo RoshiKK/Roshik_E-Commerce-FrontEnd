@@ -8,13 +8,12 @@ const cartSlice = createSlice({
   },
   reducers: {
     addToCart(state, action) {
-      // Optionally check for duplicates or update quantity here
       state.items.push(action.payload);
     },
     removeFromCart(state, action) {
       state.items = state.items.filter(item => item._id !== action.payload);
     },
-    // Add additional reducers as needed
+    
   },
 });
 
