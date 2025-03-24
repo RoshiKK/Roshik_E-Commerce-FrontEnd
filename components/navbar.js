@@ -1,10 +1,12 @@
 import { useState } from "react";
 import Link from "next/link";
-import { useCart } from "../components/cartContext";
+import { useSelector } from "react-redux";
 
 export default function Navbar() {
-  const { cartItems } = useCart();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Get cart items from Redux store
+  const cartItems = useSelector((state) => state.cart.items);
 
   return (
     <nav className="relative flex items-center justify-between py-4 px-6 bg-white shadow-md">
@@ -16,18 +18,22 @@ export default function Navbar() {
         />
         <span className="text-lg font-bold sm:text-xl">Furniro</span>
       </div>
+
+      {/* Mobile Menu Button */}
       <button
         className="block md:hidden text-gray-600"
         onClick={() => setIsMenuOpen(!isMenuOpen)}
       >
         <img src="/images/menu.png" alt="Menu" className="w-6 h-6" />
       </button>
+
+      {/* Navigation Links */}
       <ul
         className={`absolute md:static top-16 left-0 w-full bg-white md:flex md:gap-10 md:items-center md:bg-transparent md:py-0 py-4 px-6 shadow-md md:shadow-none ${
           isMenuOpen ? "block" : "hidden"
         }`}
       >
-        <li className="py-2 md:py-0 ml-96">
+        <li className="py-2 md:py-0 md:ml-96">
           <Link href="/" className="block font-bold hover:text-gray-500">
             Home
           </Link>
@@ -43,6 +49,8 @@ export default function Navbar() {
           </Link>
         </li>
       </ul>
+
+      {/* Icons (Contact, Search, Wishlist, Cart) */}
       <ul className="hidden md:flex items-center gap-6">
         <li>
           <img
@@ -73,6 +81,7 @@ export default function Navbar() {
                 alt="Cart"
                 className="w-5 h-5 sm:w-6 sm:h-6"
               />
+              {/* Display total items in cart */}
               <span className="text-sm font-medium">{cartItems.length}</span>
             </div>
           </Link>

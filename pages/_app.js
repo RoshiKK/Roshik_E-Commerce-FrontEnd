@@ -1,10 +1,15 @@
+// pages/_app.js
 import "../styles/globals.css";
-import { CartProvider } from "../components/cartContext";
+import { Provider } from 'react-redux';
+import { store, persistor } from "../store/store";
+import { PersistGate } from 'redux-persist/integration/react';
 
 export default function App({ Component, pageProps }) {
   return (
-    <CartProvider>
-      <Component {...pageProps} />
-    </CartProvider>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+         <Component {...pageProps} />
+      </PersistGate>
+    </Provider>
   );
 }
