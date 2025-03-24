@@ -43,10 +43,12 @@ export default function Cart() {
                   {cartItems.map((item) => (
                     <tr key={item._id} className="border-b">
                       <td className="p-4 flex items-center gap-4">
-                        <img
+                        <Image
                           src={item.img}
                           alt={item.name}
-                          className="w-16 h-16 object-cover rounded"
+                          width={64}
+                          height={64}
+                          className="object-cover rounded"
                         />
                         <span>{item.name}</span>
                       </td>
