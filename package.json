@@ -12,18 +12,22 @@
     "start:sanity": "sanity start"
   },
   "dependencies": {
+    "@clerk/nextjs": "^6.17.0",
     "@reduxjs/toolkit": "^2.6.1",
     "@sanity/client": "^6.28.3",
     "@sanity/image-url": "^1.1.0",
     "@sanity/vision": "^3.78.1",
     "@shadcn/ui": "^0.0.4",
-    "next": "15.1.4",
+    "@stripe/react-stripe-js": "^3.6.0",
+    "@stripe/stripe-js": "^7.2.0",
+    "next": "^15.2.3",
     "next-sanity": "^9.9.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-redux": "^9.2.0",
     "redux-persist": "^6.0.0",
     "sanity": "^3.78.1",
+    "stripe": "^18.0.0",
     "styled-components": "^6.1.15"
   },
   "devDependencies": {

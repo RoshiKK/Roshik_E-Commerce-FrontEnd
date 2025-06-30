@@ -1,9 +1,11 @@
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
+import ProtectedRoute from '../components/ProtectedRoute';
 import Image from "next/image";
 
 export default function Checkout() {
   return (
+    <ProtectedRoute>
     <div>
       <Navbar />
       <section className="p-6 max-w-7xl mx-auto">
@@ -171,5 +173,6 @@ export default function Checkout() {
 
       <Footer />
     </div>
+    </ProtectedRoute>
   );
 }

@@ -4,14 +4,57 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart } from "../store/cartSlice";
+import { useUser } from '@clerk/nextjs';
+import { loadStripe } from '@stripe/stripe-js';
 
 export default function Cart() {
   const router = useRouter();
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.items);
+  const { isSignedIn } = useUser();
 
   const getTotal = () => {
     return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  };
+
+  const handleCheckout = async () => {
+    if (!isSignedIn) {
+      router.push('/sign-in?redirect_url=/cart');
+      return;
+    }
+  
+    try {
+      const response = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ items: cartItems }),
+      });
+  
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Failed to create checkout session');
+      }
+  
+      const { id: sessionId } = await response.json();
+      
+      const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
+      if (!stripe) {
+        throw new Error('Stripe failed to initialize');
+      }
+  
+      const { error } = await stripe.redirectToCheckout({
+        sessionId: sessionId
+      });
+  
+      if (error) {
+        throw error;
+      }
+    } catch (err) {
+      console.error('Checkout error:', err);
+      alert(`Checkout failed: ${err.message}`);
+    }
   };
 
   return (
@@ -101,10 +144,10 @@ export default function Cart() {
                 </span>
               </div>
               <button
-                className="w-full bg-black text-white py-2 rounded-lg font-semibold hover:bg-gray-800 transition"
-                onClick={() => router.push("/checkout")}
+              className="w-full bg-black text-white py-2 rounded-lg font-semibold hover:bg-gray-800 transition"
+              onClick={handleCheckout}
               >
-                Check Out
+              Check Out
               </button>
             </div>
           </div>
