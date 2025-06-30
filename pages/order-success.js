@@ -79,8 +79,9 @@ export default function OrderSuccess() {
             Order ID: {session_id}
           </div>
           <p className="mb-6">
-            We've sent a confirmation email with your order details.
+            We&apos;ve sent a confirmation email with your order details.
           </p>
+
           <button
             onClick={() => router.push('/orders')}
             className="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition"
