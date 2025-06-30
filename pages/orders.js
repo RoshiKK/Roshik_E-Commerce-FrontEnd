@@ -3,7 +3,6 @@ import { useUser } from '@clerk/nextjs';
 import { client } from '../lib/sanityClient';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
-import Image from 'next/image';
 
 export default function OrdersPage() {
   const { isLoaded, isSignedIn, user } = useUser();
@@ -50,7 +49,7 @@ export default function OrdersPage() {
         
         {orders.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-lg mb-4">You haven't placed any orders yet.</p>
+            <p className="text-lg mb-4">{`You haven't placed any orders yet.`}</p>
             <button
               onClick={() => router.push('/shop')}
               className="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition"
